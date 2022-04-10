@@ -40,7 +40,7 @@ export default function ProductVariantModal({
         <Image src={close} alt="Close modal" className="react-modal-close" />
       </ReactModalClose>
       <Container>
-        <h2>Variant</h2>
+        <h2>Quantity</h2>
         <input
           value={quantity}
           onChange={(event) => handleChangeQuantity(event)}
