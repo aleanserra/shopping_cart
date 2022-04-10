@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { useContext, useEffect } from "react";
 import CartItems from "../../components/CartItems";
 import NavBar from "../../components/NavBar";
@@ -11,9 +12,13 @@ export default function Success() {
   const { clearCart } = useContext(CartContext);
   const { clearShippingDetail } = useContext(ShippingDetailContext);
 
+  const router = useRouter();
+
   useEffect(() => {
     return () => {
-      console.log("WHY CLEANUP");
+      if (router.pathname === "/success") {
+        console.log("WHY CLEANUP");
+      }
       // clearCart();
       // clearShippingDetail();
     };

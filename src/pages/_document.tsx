@@ -5,6 +5,7 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
+        <title>Products</title>
         <Head>
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
