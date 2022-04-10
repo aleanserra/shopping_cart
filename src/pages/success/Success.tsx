@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import CartItems from "../../components/CartItems";
 import NavBar from "../../components/NavBar";
 import ShippingSummary from "../../components/ShippingSummary";
@@ -12,17 +12,18 @@ export default function Success() {
   const { clearCart } = useContext(CartContext);
   const { clearShippingDetail } = useContext(ShippingDetailContext);
 
-  const router = useRouter();
+  const [enableClear, setEnableClear] = useState<boolean>(false);
+
+  setTimeout(() => setEnableClear(true), 1000);
 
   useEffect(() => {
     return () => {
-      if (router.pathname === "/success") {
-        console.log("WHY CLEANUP");
+      if (enableClear) {
+        clearCart();
+        clearShippingDetail();
       }
-      // clearCart();
-      // clearShippingDetail();
     };
-  }, []);
+  }, [enableClear]);
 
   return (
     <Container>

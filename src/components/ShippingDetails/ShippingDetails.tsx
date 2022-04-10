@@ -90,10 +90,9 @@ export default function ShippingDetails() {
         phone,
       });
       //TODO fetch purshase API
-      router.push("/success");
+      router.push("/success", null, { shallow: true });
     } else {
       setShowErrorForm(true);
-      //TODO show error
     }
   }
 

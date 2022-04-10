@@ -1,6 +1,6 @@
 import { route } from "next/dist/server/router";
 import { useRouter } from "next/router";
-import React, { useContext } from "react";
+import React, { useContext, useMemo } from "react";
 import { CartContext } from "../../contexts/CartContext";
 import Logo from "../Logo";
 import {
@@ -16,11 +16,25 @@ export default function NavBar() {
   const router = useRouter();
   const { cart } = useContext(CartContext);
 
-  const totalPrice = cart.reduce(
-    (acc, current) => acc + +current.amount * current.quantity,
-    0
+  const totalPrice = useMemo(
+    () =>
+      cart.reduce(
+        (acc, current) => acc + +current.amount * current.quantity,
+        0
+      ),
+    [cart]
   );
-  const totalItems = cart.reduce((acc, current) => acc + +current.quantity, 0);
+
+  const totalItems = useMemo(
+    () => cart.reduce((acc, current) => acc + +current.quantity, 0),
+    [cart]
+  );
+
+  // const totalPrice = cart.reduce(
+  //   (acc, current) => acc + +current.amount * current.quantity,
+  //   0
+  // );
+  // const totalItems = cart.reduce((acc, current) => acc + +current.quantity, 0);
 
   return (
     <Container>
